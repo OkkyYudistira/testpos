@@ -1,0 +1,36 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+# Setup WebDriver (pastikan chromedriver sudah tersedia)
+service = Service("path_to_chromedriver")  # Ganti dengan path sesuai
+driver = webdriver.Chrome(service=service)
+
+# Step 1: Buka website
+driver.get("https://www.lambdatest.com/selenium-playground/simple-form-demo")
+driver.maximize_window()
+
+# Step 2: Input pesan ke text box
+message_input = driver.find_element(By.ID, "user-message")
+message_input.send_keys("Halo Okky, testing otomatis sukses!")
+
+# Step 3: Klik tombol 'Show Message'
+show_message_button = driver.find_element(By.ID, "showInput")
+show_message_button.click()
+
+# Step 4: Input angka dan hitung
+value_a = driver.find_element(By.ID, "sum1")
+value_b = driver.find_element(By.ID, "sum2")
+value_a.send_keys("15")
+value_b.send_keys("25")
+
+# Step 5: Klik tombol 'Get Total'
+get_total_button = driver.find_element(By.XPATH, "//button[text()='Get Total']")
+get_total_button.click()
+
+# Delay sedikit untuk melihat hasil
+time.sleep(3)
+
+# Step 6: Tutup browser
+driver.quit()
